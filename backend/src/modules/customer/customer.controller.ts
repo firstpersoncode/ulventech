@@ -5,7 +5,7 @@ import { SessionGuard } from 'src/guards/session.guard';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.entity';
 
-@Controller('api/customer')
+@Controller('api/app/v1/customer')
 @UseGuards(new SessionGuard())
 export class CustomerController {
   constructor(private readonly userService: UserService) {}

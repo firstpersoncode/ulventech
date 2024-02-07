@@ -30,7 +30,7 @@ $ docker compose up -d ulventech_frontend
 
 ---
 ### (NestJS) User Authentication with Admin and Customer roles
-- Endpoint [http://localhost:8000/api](http://localhost:8000/api)
+- Endpoint [http://localhost:8000/api/app/v1](http://localhost:8000/api/app/v1)
 - Documentation [https://app.swaggerhub.com/apis/firstpersoncode/ulventech/1.0.0](https://app.swaggerhub.com/apis/firstpersoncode/ulventech/1.0.0)
 - Source `ulventech/backend`
 

@@ -3,7 +3,7 @@ import { SignInDto, SignUpDto, TokenDto } from './auth.dtos';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
 
-@Controller('api/auth')
+@Controller('api/app/v1/auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
