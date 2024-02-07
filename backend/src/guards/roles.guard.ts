@@ -19,7 +19,11 @@ export class RolesGuard implements CanActivate {
       return true;
     }
     const request: Request = context.switchToHttp().getRequest();
+    if (!request.cookies?.session)
+      throw new ForbiddenException('Session not found');
+
     const session = request.cookies.session;
+
     const decodedSession = decodeToken(session);
     const user = decodedSession.payload;
 
