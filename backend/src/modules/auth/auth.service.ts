@@ -1,4 +1,5 @@
 import {
+  ConflictException,
   ForbiddenException,
   Inject,
   Injectable,
@@ -32,7 +33,7 @@ export class AuthService {
 
     const currUser = await this.userService.getUserByName(body.username);
 
-    if (currUser) throw new ForbiddenException('User already exists.');
+    if (currUser) throw new ConflictException('User already exists.');
 
     const newUser = await this.userService.createUser(body);
 
@@ -64,7 +65,7 @@ export class AuthService {
       currUser.password,
     );
 
-    if (!isValidPassword) throw new ForbiddenException('Invalid password.');
+    if (!isValidPassword) throw new ConflictException('Invalid password.');
 
     const token = createToken({
       payload: {
