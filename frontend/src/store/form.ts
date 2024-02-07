@@ -1,7 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { create } from "zustand";
 
-interface IFormField {
+export interface IFormField {
   fieldName: string;
   type: string;
   value: string;
@@ -13,33 +12,23 @@ interface IFieldPayload {
   value: string;
 }
 
-export interface IFormState {
+interface IFormStore {
   fields: IFormField[];
+  setForm: (fields: IFormField[]) => void;
+  setFieldValue: ({ fieldName, value }: IFieldPayload) => void;
 }
 
-const initialState: IFormState = {
+export const useCartStore = create<IFormStore>((set) => ({
   fields: [],
-};
-
-export const formSlice = createSlice({
-  name: "form",
-  initialState,
-  reducers: {
-    setForm: (state, action: PayloadAction<IFormField[]>) => {
-      state.fields = action.payload;
-    },
-    setFieldValue: (state, action: PayloadAction<IFieldPayload>) => {
+  setForm: (fields) => set({ fields }),
+  setFieldValue: ({ fieldName, value }) =>
+    set((state) => {
       let currFields = [...state.fields];
 
       currFields.forEach((f) => {
-        if (f.fieldName === action.payload.fieldName)
-          f.value = action.payload.value;
+        if (f.fieldName === fieldName) f.value = value;
       });
 
-      state.fields = currFields;
-    },
-  },
-});
-
-export const { setForm, setFieldValue } = formSlice.actions;
-export const formReducer = formSlice.reducer;
+      return { fields: currFields };
+    }),
+}));

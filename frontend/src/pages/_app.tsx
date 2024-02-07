@@ -1,5 +1,4 @@
 import { queryClient } from "@/libs/queryClient";
-import ReduxProvider from "@/store/Provider";
 import "@/styles/globals.css";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -11,11 +10,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ReduxProvider>
-        <ThemeProvider theme={createTheme()}>
-          <Component key={asPath} {...pageProps} />
-        </ThemeProvider>
-      </ReduxProvider>
+      <ThemeProvider theme={createTheme()}>
+        <Component key={asPath} {...pageProps} />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
