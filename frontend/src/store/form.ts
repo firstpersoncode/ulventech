@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export interface IFormField {
+export type IFormField = {
   fieldName: string;
   type: string;
   value: string;
@@ -18,7 +18,7 @@ interface IFormStore {
   setFieldValue: ({ fieldName, value }: IFieldPayload) => void;
 }
 
-export const useCartStore = create<IFormStore>((set) => ({
+export const useFormStore = create<IFormStore>((set) => ({
   fields: [],
   setForm: (fields) => set({ fields }),
   setFieldValue: ({ fieldName, value }) =>
